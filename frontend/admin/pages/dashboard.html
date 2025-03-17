@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Dairy Management System</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/frontend/milk-logo.png">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/frontend/milk-logo.png" alt="Dairy Management Logo" class="logo">
+                <h2>Dairy Management</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="milk-collection.html">
+                            <i class="fas fa-fill-drip"></i>
+                            <span>Milk Collection</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="price-management.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Price Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="farmers-management.html">
+                            <i class="fas fa-users"></i>
+                            <span>Farmer Management</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="payments-processing.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Payments Processing</span>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="feedback.html">
+                            <i class="fas fa-comment-alt"></i>
+                            <span>Feedback</span>
+                        </a>
+                    </li>
+                    <li class="logout">
+                        <a href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="toggle-sidebar">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+              
+                
+                <div class="user-menu">
+                    
+                    <div class="profile">
+                        <img src="/frontend/milk-logo.png" alt="Admin Avatar">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                    <p>Overview of the dairy management system.</p>
+                </div>
+                
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon milk">
+                            <i class="fas fa-fill-drip"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Today's Collection</h3>
+                            <p class="stat-value" id="todayCollection">0 L</p>
+                           
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon farmers">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Farmers</h3>
+                            <p class="stat-value" id="totalFarmers">0</p>
+                           
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon price">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Current Price</h3>
+                            <p class="stat-value" id="currentPrice">KES 0/L</p>
+                            <p class="stat-change">
+                                Last updated: <span id="priceLastUpdated">Today</span>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+                <!-- Charts Section -->
+                <div class="charts-container">
+                    <div class="chart-card wide-card">
+                        <div class="chart-header">
+                            <h3>Milk Collection Trends</h3>
+                            <div class="chart-actions">
+                                <select id="collectionPeriod">
+                                    <option value="week">Last 7 Days</option>
+                                    <option value="month" selected>This Month</option>
+                                    <option value="year">This Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="collectionChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3>Top Contributing Farmers</h3>
+                            <div class="chart-actions">
+                                <button class="refresh-btn">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="chart-body">
+                            <canvas id="farmersChart"></canvas>
+                        </div>
+                    </div>
+                    
+                   
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <div class="section-header">
+                        <h2>Recent Activity</h2>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    
+                    <div class="activity-list" id="activityList">
+                        <!-- Activities will be populated via JS -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

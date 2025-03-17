@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payments Processing - Dairy Management System</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/payments-processing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/frontend/milk-logo.png">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/frontend/milk-logo.png" alt="Dairy Management Logo" class="logo">
+                <h2>Dairy Management</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="milk-collection.html">
+                            <i class="fas fa-fill-drip"></i>
+                            <span>Milk Collection</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="price-management.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Price Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="farmers-management.html">
+                            <i class="fas fa-users"></i>
+                            <span>Farmer Management</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="payments-processing.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Payments Processing</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="feedback.html">
+                            <i class="fas fa-comment-alt"></i>
+                            <span>Feedback</span>
+                        </a>
+                    </li>
+                    <li class="logout">
+                        <a href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="toggle-sidebar">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-menu">
+                    <div class="profile">
+                        <img src="/frontend/milk-logo.png" alt="Admin Avatar">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Payments Processing Content -->
+            <div class="dashboard-content">
+                <div class="page-title">
+                    <h1>Payments Processing</h1>
+                    <p>Manage and process payments for farmers.</p>
+                </div>
+                
+                <!-- Payments Table -->
+                <div class="payments-table">
+                    <div class="table-header">
+                        <h3>Payments</h3>
+                        <div class="table-actions">
+                            <input type="text" placeholder="Search..." class="search-input" id="paymentSearch">
+                           
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Payment ID</th>
+                                    <th>Farmer Name</th>
+                                    <th>Quantity (L)</th>
+                                    <th>Price/L</th>
+                                    <th>Amount (KES)</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentsTableBody">
+                                <!-- Table rows will be populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-pagination">
+                        <span>Showing <span id="startEntry">1</span> to <span id="endEntry">10</span> of <span id="totalEntries">0</span> entries</span>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
+                            <span id="currentPage">1</span>
+                            <button class="pagination-btn" id="nextPage"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/payments-processing.js"></script>
+</body>
+</html>
+

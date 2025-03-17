@@ -1,0 +1,141 @@
+/* Inherit styles from dashboard.css */
+@import url('dashboard.css');
+
+/* Feedback specific styles */
+.feedback-content {
+    padding: 20px;
+}
+
+.feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feedback-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    padding: 20px;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.farmer-info {
+    font-weight: 500;
+}
+
+.feedback-date {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+.feedback-subject {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.feedback-message {
+    margin-bottom: 15px;
+}
+
+.feedback-response {
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.feedback-response h4 {
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.feedback-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-respond {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.btn-respond:hover {
+    background-color: var(--accent-color);
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#responseForm {
+    margin-top: 20px;
+}
+
+#responseForm .form-group {
+    margin-bottom: 15px;
+}
+
+#responseForm label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#responseForm textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--medium-gray);
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 100px;
+}
+
+#responseForm button {
+    margin-top: 10px;
+}

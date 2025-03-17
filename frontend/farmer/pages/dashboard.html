@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Dashboard - Dairy Management System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/dashboard.css">
+    <link rel="icon" href="/frontend/milk-logo.png">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Dairy System</h3>
+                <div class="farmer-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="farmer-name">Loading...</span>
+                </div>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#" data-section="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="submissions">
+                        <i class="fas fa-chart-line"></i> Milk Submissions
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="payments">
+                        <i class="fas fa-money-bill-wave"></i> Payments
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-section="feedback">
+                        <i class="fas fa-comment"></i> Feedback
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Top Navigation -->
+            <nav class="navbar">
+                <button type="button" id="sidebarCollapse" class="btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="current-price">
+                    Current Price: <span id="milk-price">Loading...</span> per liter
+                </div>
+            </nav>
+
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="content-section active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-fill-drip"></i></div>
+                        <div class="stat-content">
+                            <h3>Today's Submission</h3>
+                            <p id="today-submission">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-calendar"></i></div>
+                        <div class="stat-content">
+                            <h3>This Month's Total</h3>
+                            <p id="month-total">Loading...</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-money-bill"></i></div>
+                        <div class="stat-content">
+                            <h3>Expected Payment</h3>
+                            <p id="expected-payment">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="milkSubmissionChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Submissions Section -->
+            <section id="submissions-section" class="content-section">
+                <h2>Milk Submissions</h2>
+                <div class="filter-container">
+                    <select id="submission-period">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table id="submissions-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Morning (L)</th>
+                                <th>Evening (L)</th>
+                                <th>Total (L)</th>
+                                <th>Amount (KES)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="submissions-body">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Payments Section -->
+            <section id="payments-section" class="content-section">
+                <h2>Payment History</h2>
+                <div class="table-container">
+                    <table id="payments-table">
+                        <thead>
+                            <tr>
+                                <th>Payment ID</th>
+                                <th>Quantity (L)</th>
+                                <th>Price/L</th>
+                                <th>Amount (KES)</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody id="payments-body">
+                            <!-- Data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Feedback Section -->
+            <section id="feedback-section" class="content-section">
+                <h2>Feedback</h2>
+                <div class="feedback-container">
+                    <form id="feedback-form">
+                        <div class="form-group">
+                            <label for="feedback-subject">Subject</label>
+                            <input type="text" id="feedback-subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="feedback-message">Message</label>
+                            <textarea id="feedback-message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Submit Feedback</button>
+                    </form>
+                    <div class="previous-feedback">
+                        <h3>Previous Feedback</h3>
+                        <div id="feedback-history">
+                            <!-- Feedback history will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="../JS/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Management - Dairy Management System</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/price-management.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="/frontend/milk-logo.png">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="/frontend/milk-logo.png" alt="Dairy Management Logo" class="logo">
+                <h2>Dairy Management</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="milk-collection.html">
+                            <i class="fas fa-fill-drip"></i>
+                            <span>Milk Collection</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="price-management.html">
+                            <i class="fas fa-tags"></i>
+                            <span>Price Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="farmers-management.html">
+                            <i class="fas fa-users"></i>
+                            <span>Farmer Management</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="payments-processing.html">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <span>Payments Processing</span>
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a href="feedback.html">
+                            <i class="fas fa-comment-alt"></i>
+                            <span>Feedback</span>
+                        </a>
+                    </li>
+                    <li class="logout">
+                        <a href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Navigation -->
+            <header class="top-nav">
+                <div class="toggle-sidebar">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="user-menu">
+                   
+                    <div class="profile">
+                        <img src="/frontend/milk-logo.png" alt="Admin Avatar">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Price Management Content -->
+            <div class="dashboard-content">
+                <div class="page-title">
+                    <h1>Price Management</h1>
+                    <p>Set and manage milk prices per liter.</p>
+                </div>
+                
+                <!-- Current Price Card -->
+                <div class="current-price-card">
+                    <div class="price-header">
+                        <h2>Current Milk Price</h2>
+                        <span class="last-update">Last updated: <span id="lastUpdateDate"></span></span>
+                    </div>
+                    <div class="price-value">
+                        <span class="currency">KES</span>
+                        <span class="amount" id="currentPriceValue"></span>
+                        <span class="unit">/ liter</span>
+                    </div>
+                    <button class="update-price-btn" id="updatePriceBtn">
+                        <i class="fas fa-edit"></i> Update Price
+                    </button>
+                </div>
+                
+                <!-- Price Update Form (Initially Hidden) -->
+                <div class="price-update-form" id="priceUpdateForm" style="display: none;">
+                    <div class="form-card">
+                        <div class="form-header">
+                            <h2>Update Milk Price</h2>
+                            <button class="close-btn" id="closeFormBtn">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <form id="updatePriceForm">
+                            <div class="form-group">
+                                <label for="newPrice">New Price (KES per liter)</label>
+                                <input type="number" id="newPrice" name="newPrice" step="0.01" min="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="effectiveDate">Effective Date</label>
+                                <input type="date" id="effectiveDate" name="effectiveDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="priceNotes">Notes (Optional)</label>
+                                <textarea id="priceNotes" name="priceNotes" rows="3"></textarea>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-cancel" id="cancelPriceUpdate">Cancel</button>
+                                <button type="submit" class="btn btn-save">Save New Price</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Price History Chart -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Price History</h3>
+                        <div class="chart-actions">
+                            <select id="priceHistoryPeriod">
+                                <option value="6months">Last 6 Months</option>
+                                <option value="1year" selected>Last Year</option>
+                                <option value="all">All Time</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-body">
+                        <canvas id="priceHistoryChart"></canvas>
+                    </div>
+                </div>
+                
+                <!-- Price History Table -->
+                <div class="price-history-table">
+                    <div class="table-header">
+                        <h3>Price Change History</h3>
+                        <div class="table-actions">
+                            <input type="text" placeholder="Search..." class="search-input">
+                            
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Price (KES/L)</th>
+                                    <th>Change</th>
+                                    <th>Changed By</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody id="priceHistoryTableBody">
+                                <!-- Table rows will be populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="table-pagination">
+                        <span>Showing 1 to 10 of 24 entries</span>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.7.0/chart.min.js"></script>
+    <script src="../js/price-management.js"></script>
+</body>
+</html>
